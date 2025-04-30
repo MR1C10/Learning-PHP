@@ -24,18 +24,25 @@
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['salario']) && $_POST['salario'] !== '') {
                 $salario_bruto = floatval($_POST['salario']);
 
-                function calculoDesconto($salario_bruto, $porcentagem)
-                {
-                    $calcDesconto = $salario_bruto * $porcentagem;
-                    $salarioFinal = $salario_bruto - $calcDesconto;
+                function resultado($salario_bruto, $salarioFinal, $porcentagem, $calcDesconto){ // Imprime os resultado
                     echo "<b>Salario bruto = $salario_bruto </b>";
                     echo "<b><br>Porcentagem de desconto = " . ($porcentagem * 100) . "% </b>";
                     echo "<b><br>Valor do desconto = $calcDesconto </b>";
                     echo "<b><br>Salario liquido a receber = $salarioFinal </b>";
                 }
+                
+                
+                function calculoDesconto($salario_bruto, $porcentagem){ //Calcula os descontos
 
-                function porcentagemDesconto($salario)
-                {
+                    $calcDesconto = $salario_bruto * $porcentagem;
+                    $salarioFinal = $salario_bruto - $calcDesconto;
+                    
+                    resultado($salario_bruto, $salarioFinal, $porcentagem, $calcDesconto);
+                }
+
+
+                function porcentagemDesconto($salario){ // Defini a porcentagem a ser descontada
+                    
                     if ($salario >= 2428.81 && $salario <= 2826.65) {
                         $porcentagem = 0.075;
                     } else if ($salario >= 2826.66 && $salario <= 3751.05) {
